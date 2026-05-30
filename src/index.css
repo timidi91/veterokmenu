@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --green: #134534;
+  --green-light: #1a5a44;
+  --green-card: #0f3829;
+  --green-hover: #1e6650;
+  --text: #E6E2DA;
+  --text-dim: rgba(230, 226, 218, 0.65);
+  --text-muted: rgba(230, 226, 218, 0.45);
+  --header-bg: #8a9090;
+  --pill-active-bg: #E6E2DA;
+  --pill-active-text: #134534;
+  --pill-inactive-bg: transparent;
+  --pill-inactive-border: rgba(230, 226, 218, 0.35);
+  --cat-bg: rgba(255,255,255,0.12);
+  --cat-border: rgba(255,255,255,0.18);
+  --search-bg: rgba(255, 255, 255, 0.10);
+  --divider: rgba(230, 226, 218, 0.12);
+  --banner-border: #134534;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background: #0a1f15;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: #0a1f15;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 80px rgba(0,0,0,0.9), 0 0 160px rgba(0,0,0,0.6);
+  overflow: hidden;
+}
+
+/* Hide scrollbar */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Input placeholder */
+::placeholder {
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Button active state */
+button:active {
+  transform: scale(0.94);
+}
