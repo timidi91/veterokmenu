@@ -18,6 +18,7 @@ function PromoBanner() {
           border: '4px solid #134534',
           borderRadius: 28,
           overflow: 'hidden',
+          position: 'relative',
         }}
       >
         <img
@@ -25,6 +26,9 @@ function PromoBanner() {
           alt="Акция"
           className="w-full h-auto block"
         />
+        <div className="absolute bottom-3 right-3 bg-[#E6E2DA] text-[#134534] text-xs font-bold px-3 py-1.5 rounded-md shadow-lg border border-[#134534]/10 tracking-wide">
+          Акция действует только с понедельника по пятницу!
+        </div>
       </div>
     </div>
   );
