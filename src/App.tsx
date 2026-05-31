@@ -9,10 +9,27 @@ interface CartItem extends MenuItem {
   quantity: number;
 }
 
-// ─── Promo Banner (static) ───────────────────────────────────────────────────
+// ─── Promo Banner (carousel) ─────────────────────────────────────────────────
+const PROMO_SLIDES = [
+  { src: '/pivoakk.png',   alt: 'Акция пиво'  },
+  { src: '/vodkaaksia.png', alt: 'Акция водка' },
+];
+
 function PromoBanner() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % PROMO_SLIDES.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  const slide = PROMO_SLIDES[currentSlide];
+
   return (
     <div style={{ marginLeft: 16, marginRight: 16, marginBottom: 32, marginTop: 24 }}>
+      {/* Banner frame */}
       <div
         style={{
           border: '4px solid #134534',
@@ -21,14 +38,41 @@ function PromoBanner() {
           position: 'relative',
         }}
       >
-        <img
-          src="/pivoakk.png"
-          alt="Акция"
-          className="w-full h-auto block"
-        />
-        <div className="absolute bottom-3 right-3 bg-[#E6E2DA] text-[#134534] text-xs font-bold px-3 py-1.5 rounded-md shadow-lg border border-[#134534]/10 tracking-wide">
-          Акция действует только с понедельника по пятницу!
-        </div>
+        {/* Slide image with fade transition */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={slide.src}
+            src={slide.src}
+            alt={slide.alt}
+            className="w-full h-auto block"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.45, ease: 'easeInOut' }}
+          />
+        </AnimatePresence>
+
+
+      </div>
+
+      {/* Pagination dots */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 7, marginTop: 10 }}>
+        {PROMO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i)}
+            style={{
+              width: i === currentSlide ? 20 : 7,
+              height: 7,
+              borderRadius: 99,
+              background: i === currentSlide ? '#E2B765' : 'rgba(19,69,52,0.45)',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+          />
+        ))}
       </div>
     </div>
   );

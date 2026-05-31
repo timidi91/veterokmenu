@@ -162,7 +162,7 @@ const rawData = {
       items: [
         { id: "p1", name: "Yichang светлое 4%", weight: "", price: 800, ingredients: "", image: null },
         { id: "p2", name: "Пражское 4,5 %", weight: "", price: 900, ingredients: "", image: null },
-        { id: "p3", name: "Арасан фирменное 4%", weight: "", price: 750, ingredients: "", image: null },
+        { id: "p3", name: "Жигулевское 4%", weight: "", price: 800, ingredients: "", image: null },
       ],
     },
     {
