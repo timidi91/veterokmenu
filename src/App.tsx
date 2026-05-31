@@ -29,13 +29,15 @@ function PromoBanner() {
 
   return (
     <div style={{ marginLeft: 16, marginRight: 16, marginBottom: 32, marginTop: 24 }}>
-      {/* Banner frame */}
+      {/* Banner frame — fixed aspect ratio prevents layout shift */}
       <div
         style={{
           border: '4px solid #134534',
           borderRadius: 28,
           overflow: 'hidden',
           position: 'relative',
+          width: '100%',
+          aspectRatio: '16 / 9',
         }}
       >
         {/* Slide image with fade transition */}
@@ -44,15 +46,13 @@ function PromoBanner() {
             key={slide.src}
             src={slide.src}
             alt={slide.alt}
-            className="w-full h-auto block"
+            className="absolute inset-0 w-full h-full object-cover object-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.45, ease: 'easeInOut' }}
           />
         </AnimatePresence>
-
-
       </div>
 
       {/* Pagination dots */}
