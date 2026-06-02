@@ -9,24 +9,8 @@ interface CartItem extends MenuItem {
   quantity: number;
 }
 
-// ─── Promo Banner (carousel) ─────────────────────────────────────────────────
-const PROMO_SLIDES = [
-  { src: '/pivoakk.png',   alt: 'Акция пиво'  },
-  { src: '/vodkaaksia.png', alt: 'Акция водка' },
-];
-
+// ─── Promo Banner (static) ──────────────────────────────────────────────────
 function PromoBanner() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % PROMO_SLIDES.length);
-    }, 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  const slide = PROMO_SLIDES[currentSlide];
-
   return (
     <div style={{ marginLeft: 16, marginRight: 16, marginBottom: 32, marginTop: 24 }}>
       {/* Banner frame — fixed aspect ratio prevents layout shift */}
@@ -40,39 +24,11 @@ function PromoBanner() {
           aspectRatio: '16 / 9',
         }}
       >
-        {/* Slide image with fade transition */}
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={slide.src}
-            src={slide.src}
-            alt={slide.alt}
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.45, ease: 'easeInOut' }}
-          />
-        </AnimatePresence>
-      </div>
-
-      {/* Pagination dots */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 7, marginTop: 10 }}>
-        {PROMO_SLIDES.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentSlide(i)}
-            style={{
-              width: i === currentSlide ? 20 : 7,
-              height: 7,
-              borderRadius: 99,
-              background: i === currentSlide ? '#E2B765' : 'rgba(19,69,52,0.45)',
-              border: 'none',
-              padding: 0,
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-            }}
-          />
-        ))}
+        <img
+          src="/vodkaaksia.png"
+          alt="Акция водка"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
       </div>
     </div>
   );
