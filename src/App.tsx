@@ -25,7 +25,7 @@ function PromoBanner() {
         }}
       >
         <img
-          src="/vodkaaksia.png"
+          src="/promoshots.png"
           alt="Акция водка"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
@@ -807,8 +807,14 @@ export default function App() {
   const userScrolling = useRef(false);
 
   // Filtered categories by global + search
+  // Sort by categoryIds order (filter preserves menuData order, not categoryIds order)
   const globalCat = globalCategories.find(g => g.id === activeGlobal);
-  const baseCats = menuData.filter(c => globalCat?.categoryIds.includes(c.id));
+  const baseCats = menuData
+    .filter(c => globalCat?.categoryIds.includes(c.id))
+    .sort((a, b) => {
+      const ids = globalCat?.categoryIds ?? [];
+      return ids.indexOf(a.id) - ids.indexOf(b.id);
+    });
   const filteredCats = baseCats
     .map(cat => ({
       ...cat,
@@ -900,8 +906,10 @@ export default function App() {
     // 1. Force reset the active pill category to the first sub-category of the new main menu
     const newGlobalCat = globalCategories.find(g => g.id === id);
     if (newGlobalCat && newGlobalCat.categoryIds.length > 0) {
-      // Find the base categories for the new main menu
-      const newBaseCats = menuData.filter(c => newGlobalCat.categoryIds.includes(c.id));
+      // Find the base categories for the new main menu, sorted by categoryIds order
+      const newBaseCats = menuData
+        .filter(c => newGlobalCat.categoryIds.includes(c.id))
+        .sort((a, b) => newGlobalCat.categoryIds.indexOf(a.id) - newGlobalCat.categoryIds.indexOf(b.id));
       
       // Apply the current search filter
       const newFilteredCats = newBaseCats

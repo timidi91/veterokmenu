@@ -163,6 +163,7 @@ const rawData = {
         { id: "p1", name: "Yichang светлое 4%", weight: "", price: 800, ingredients: "", image: null },
         { id: "p2", name: "Пражское 4,5 %", weight: "", price: 900, ingredients: "", image: null },
         { id: "p3", name: "Жигулевское 4%", weight: "", price: 800, ingredients: "", image: null },
+        { id: "p4", name: "Сидр Ягодный 3,5%", weight: "", price: 990, ingredients: "", image: null },
       ],
     },
     {
@@ -237,7 +238,7 @@ export const globalCategories = [
     id: "bar",
     name: "Барное меню",
     image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=220&h=180&fit=crop&q=80",
-    categoryIds: ["pivo", "alkogol", "lemonades", "teas", "k_pivu"],
+    categoryIds: ["alkogol", "pivo", "k_pivu", "lemonades", "teas"],
   },
   {
     id: "sets",
